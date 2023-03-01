@@ -51,6 +51,14 @@ void loop()
   delay(1000);
 }
 
+/* Flip.Disc_1x7 function allows you to control a selected disc in a selected D1X7 display.
+ * You can control only one disc of the selected display at a time.
+ * Flip.Disc_1x7(module_number, discNumber, discStatus);
+ * - module_number - relative number of the D1X7 display
+ * - discNumber - display disc number counting from left to right 1-7
+ * - discStatus - reset disc "0" or set disc "1" 
+ * Details can be found in the description of the library https://github.com/marcinsaj/FlipDisc */
+
 void FlipDiscRoutine_1(void)
 {
   for (int i = 0; i < 5; i++)
