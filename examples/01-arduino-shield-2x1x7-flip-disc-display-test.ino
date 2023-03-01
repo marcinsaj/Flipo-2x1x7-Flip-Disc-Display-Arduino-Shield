@@ -1,36 +1,31 @@
+/*----------------------------------------------------------------------------------*
+ * Arduino Shield for 2 x 1x7 Flip-disc Display - example of display control        *
+ *                                                                                  *
+ * Project website: https://bit.ly/ARD-2x1x7                                        *
+ * Marcin Saj 28 Feb 2023                                                           *
+ * https://www.Flipo.io                                                             *
+ *                                                                                  *
+ * Arduino Nano Every is required                                                   *
+ * 1x7 Flip-disc display is required: https://bit.ly/1x7-FD                         *
+ *----------------------------------------------------------------------------------*/
+
 #include <FlipDisc.h>   // https://github.com/marcinsaj/FlipDisc
 
-// Pin declaration for Arduino Uno and PSPS module
-#define EN_PIN  10     // Start & End SPI transfer data
+// Pin declaration for Arduino Nano Every and PSPS module
+#define EN_PIN  10      // Start & End SPI transfer data
 #define CH_PIN  A0      // Charging PSPS module - turn ON/OFF
 #define PL_PIN  A1      // Release the current pulse - turn ON/OFF
 
-/*
-// Pin declaration for a dedicated controller
-#define EN_PIN  A7
-#define CH_PIN  A2
-#define PL_PIN  A3
-*/
-
 void setup()
 {
-  /* Flip.Pin(); it is the most important function and first to call before everything else.
-  The function is used to declare pin functions. Before starting the device, double check
-  that the declarations and connection are correct. If the connection of the control outputs
-  is incorrect, the display may be physically damaged. */
+  /* The most important function and first to call before everything else.
+  Details can be found in the description of the library 
+  https://github.com/marcinsaj/FlipDisc */
   Flip.Pin(EN_PIN, CH_PIN, PL_PIN);
  
-  /* Flip.Init(display1, display2, ... display8) it is the second most important function.
-  Initialization function for a series of displays. Up to 8 displays can be connected in series
-  in any configuration. The function has 1 default argument and 7 optional arguments.
-  The function also prepares SPI. Correct initialization requires code names of the serially
-  connected displays:
-  - D7SEG - 7-segment display
-  - D2X1 - 2x1 display
-  - D3X1 - 3x1 display
-  - D1X3 - 1x3 display
-  - D1X7 - 1x7 display */
+  /* Initialization function of the displays */
   Flip.Init(D1X7, D1X7);
+  
   delay(3000);
 }
 
@@ -47,7 +42,17 @@ void loop()
   Flip.Clear();
   delay(1000);
 
+  FlipDiscRoutine_1();
+  FlipDiscRoutine_2();
+  FlipDiscRoutine_3();
+  FlipDiscRoutine_4();
+  
+  Flip.All();
+  delay(1000);
+}
 
+void FlipDiscRoutine_1(void)
+{
   for (int i = 0; i < 5; i++)
   {
     for(int j = 1; j <= 7; j++)
@@ -64,8 +69,11 @@ void loop()
       delay(200);  
     }
   }
-  delay(1000);
+  delay(1000); 
+}
 
+void FlipDiscRoutine_2(void)
+{
   for(int i = 0; i < 5; i++)
   {
     for(int j = 1; j <=7; j++)
@@ -82,8 +90,11 @@ void loop()
       Flip.Disc_1x7(2, j, 0);  
       delay(100);
     }
-  }
+  }  
+}
 
+void FlipDiscRoutine_3(void)
+{
   for(int i = 0; i < 5; i++)
   {
     for(int j = 1; j <=7; j++)
@@ -101,12 +112,11 @@ void loop()
     }
 
     delay(1000);
-  }
+  } 
+}
 
-
-
-
-
+void FlipDiscRoutine_4(void)
+{
   for(int i = 0; i < 5; i++)
   {
     for(int j = 7; j >= 1; j--)
@@ -121,8 +131,5 @@ void loop()
       Flip.Disc_1x7(2, j, 0);  
       delay(50);
     }
-  }
- 
-  Flip.All();
-  delay(1000);
+  } 
 }
