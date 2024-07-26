@@ -1,5 +1,6 @@
 /*----------------------------------------------------------------------------------*
- * Arduino Shield for 2 x 1x7 Flip-disc Display - example of button control         *
+ * Arduino Shield for 2 x 1x7 Flip-disc Display                                     *
+ * Example of button control - short and long press                                 *
  *                                                                                  *
  * Project website: https://bit.ly/ARD-2x1x7                                        *
  * Marcin Saj 28 Feb 2023                                                           *
