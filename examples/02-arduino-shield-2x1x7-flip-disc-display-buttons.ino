@@ -84,8 +84,9 @@ void loop()
 
         Serial.print("Button ");     // Print the button number
         Serial.print(7-i);
-        Serial.print(": short press, toggled to ");
-        Serial.println(toggleDiscStates[i] ? "ON" : "OFF"); // Print the toggle state
+        Serial.print(": short press. Toggled disc ");
+        Serial.print(7-i);
+        Serial.println(toggleDiscStates[i] ? ": ON" : ": OFF"); // Print the toggle state
 
         Flip.Disc_1x7(1, (i+1), toggleDiscStates[i]);
       }
@@ -101,8 +102,9 @@ void loop()
         longPressActive[i] = true;     // Set the long press flag for the button
         Serial.print("Button ");       // Print the button number
         Serial.print(7-i);
-        Serial.print(": long press, toggled to ");
-        Serial.println(toggleDiscStates[i+7] ? "ON" : "OFF"); // Print the toggle state
+        Serial.print(": long press, Toggled disc ");
+        Serial.print(14-i);
+        Serial.println(toggleDiscStates[i+7] ? ": ON" : ": OFF"); // Print the toggle state
 
         Flip.Disc_1x7(2, (i+1), toggleDiscStates[i+7]);
       }
